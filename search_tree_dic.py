@@ -160,7 +160,14 @@ class Dictionary:
                 if self.left:
                     self.left.preorder()
                 if self.right:
-                    self.right.preorder()    
+                    self.right.preorder()  
+       def height(self):
+
+            if self.left is None and self.right is None:
+                return 0
+            else:
+                return max(1 + self.right.height() if self.right is not None else 0, 1 + self.left.height()if self.left is not None else 0)
+        # print level node accepting level value in integer            
         
         def __iter__(self): #Should iterats over the Nodes in the tree
             yield (self.key,self.value)                 # First, it yield itself
@@ -190,7 +197,18 @@ class Dictionary:
         else:
             return self.__tree.insert(key,value)              
           # Abstract method, add your own
+            
+            
+            
+            
 
+   def height(self):
+        if self.__tree.right is None and self.__tree.left is None:
+            return 0
+        else:
+            # height_dic={'r':0,'l':0}
+            return self.__tree.height()
+   # level nodes print out       
     """
     Returns value that is identified by `key`, or None if no such key exists.
     """
