@@ -165,6 +165,13 @@ class Dictionary:
             else:
                 return max(1 + self.right.height() if self.right is not None else 0, 1 + self.left.height()if self.left is not None else 0)
         # print level node accepting level value in integer
+        def levelNode(self, level):
+            if level == 0:
+                return (self.key, self.value)
+            else:
+                return(self.right.levelNode(level-1)if self.right is not None else None, self.left.levelNode(level-1)if self.left is not None else None)
+
+            
 
         def __iter__(self):  # Should iterats over the Nodes in the tree
             # First, it yield itself
@@ -244,7 +251,14 @@ class Dictionary:
     """
         Returns a gererator that could iterate over the tupel (key, value) objects (orderd by key, smallest to largest)
     """
+      # level nodes print out
 
+   def levelNode(self, level):
+        if self.__tree is not None:
+            if level == 0:
+                return (self.__tree.key, self.__tree.value)
+            else:
+                return self.__tree.levelNode(level-1)
     def __iter__(self):
         if self.__tree is not None:
             # Necessary since None does not have an __iter__ method
